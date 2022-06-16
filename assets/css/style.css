@@ -120,11 +120,26 @@ textarea {
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
   background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* this should only be the margin sizes on mobile.
 regular sizes should be 5px */
 .row {
-  margin: 20px 0;
+  margin: 10px 0;
 }
 
+/* Color for times in the past */
+.past-colors {
+  background-color: #e67070;
+}
+
+.present-colors {
+  background-color: #67ce67;
+}
+
+.future-colors {
+  background-color: #ffffff;
+}
