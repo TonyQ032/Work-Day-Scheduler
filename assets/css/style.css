@@ -2,6 +2,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1;
+  background-image: linear-gradient(360deg, black, transparent);
 }
 
 textarea {
@@ -33,7 +34,6 @@ textarea {
 .row {
   white-space: pre-wrap;
   height: 80px;
-  border-top: 1px solid white;
 }
 
 .hour {
@@ -69,3 +69,62 @@ textarea {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
 }
+
+/* CSS for individual time-lines */
+
+.row div {
+  border: 1px solid black;
+}
+
+.main-row {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.input {
+  border: none;
+  outline: none;
+  height: 65%;
+  width: 100%;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.save-icon {
+  height: 30px;
+  width: 30px;
+}
+
+.save-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00c6ff;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  cursor: pointer;
+  opacity: .8;
+}
+
+.save-box:hover {
+  opacity: 1;
+}
+
+.time-stamp {
+  margin: 0;
+  text-align: center;
+}
+
+.time-box {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  background-color: #ffffff;
+}
+
+/* this should only be the margin sizes on mobile.
+regular sizes should be 5px */
+.row {
+  margin: 20px 0;
+}
+
