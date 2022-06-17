@@ -24,3 +24,11 @@ for (i=0; i < calendarHours.length; i++) {
 
   container.append(row);
 }
+
+//Displays today's date at the top of the page
+$("#currentDay").text(moment().format("[Today is ]dddd, MMMM Do, YYYY"));
+
+//TO-DO: Create a conditional statement that makes all the times before the current hour
+//red, the current hour green, and the rest of the day white
+
+//TO-DO: Store user text in each box into local storage
