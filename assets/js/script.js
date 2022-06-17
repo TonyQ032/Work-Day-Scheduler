@@ -1,5 +1,4 @@
 const container = $(".container");
-
 let calendarHours = ["7:00 AM", "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM"];
 
 //Loop generates the various calendar rows for every hour in calendarHours
@@ -31,4 +30,29 @@ $("#currentDay").text(moment().format("[Today is ]dddd, MMMM Do, YYYY"));
 //TO-DO: Create a conditional statement that makes all the times before the current hour
 //red, the current hour green, and the rest of the day white
 
+
+
+
 //TO-DO: Store user text in each box into local storage
+const saveButton = $(".save-box");
+const userInput = $(".input");
+let savedInputs = [];
+
+function saveText(event) {
+  event.target.style.backgroundColor = 'red';
+  //Gets the value of each individual text area from its corresponding row
+  //Runs different command depending on if the <div> or the <img> was clicked, same results
+  if (event.target.classList.contains("save-icon")) {
+    let inputValue = event.target.parentElement.parentElement.querySelector("textarea").value;
+    console.log(inputValue);
+  } else {
+    let inputValue = event.target.parentElement.querySelector("textarea").value;
+    console.log(inputValue);
+  }
+
+  //TO-DO: Write the value of inputValue into localStorage (should also delete and replace
+  //the previous value of itself if applicable)
+    //This will probably end up being placed in the conditional statement above ^
+}
+
+saveButton.on("click", saveText);

@@ -34,6 +34,8 @@ textarea {
 .row {
   white-space: pre-wrap;
   height: 80px;
+  margin: 3px 0;
+  filter: drop-shadow(1px 2px 3px black);
 }
 
 .hour {
@@ -125,12 +127,6 @@ textarea {
   align-items: center;
 }
 
-/* this should only be the margin sizes on mobile.
-regular sizes should be 5px */
-.row {
-  margin: 10px 0;
-}
-
 /* Color for times in the past */
 .past-colors {
   background-color: #e67070;
@@ -142,4 +138,10 @@ regular sizes should be 5px */
 
 .future-colors {
   background-color: #ffffff;
+}
+
+@media (max-width: 380px) {
+  .display-3 {
+    font-size: 50px;
+  }
 }
