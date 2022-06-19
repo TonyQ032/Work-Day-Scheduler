@@ -1,7 +1,10 @@
 //Displays today's date at the top of the page
 $("#currentDay").text(moment().format("[Today is ]dddd, MMMM Do, YYYY"));
 
+const saveButton = $(".save-box");
+const userInput = $(".input");
 const container = $(".container");
+
 let calendarHours = {
   "9:00 AM": "",
   "10:00 AM": "",
@@ -14,11 +17,30 @@ let calendarHours = {
   "5:00 PM": "",
 }
 
-//TO-DO: Store user text in each box into local storage
-const saveButton = $(".save-box");
-const userInput = $(".input");
-let savedInputs = [];
+//Retrieves any previously written tasks from localStorage and reassigns them 
+//to the object "calendarHours"
+function retrieveHours() {
+  if (localStorage.length === 0) {
+    return
+  } else {
+    let pulledHours = JSON.parse(localStorage.getItem("calendarHours"));
+    calendarHours = pulledHours
+  }
+}
 
+retrieveHours();
+
+//Takes user's text along with the corresponding hour block and saves it into localStorage
+function saveData(userText, time) {
+  for (let hour in calendarHours) {
+    if (hour === time) {
+      calendarHours[time] = userText;
+    }
+  }
+  localStorage.setItem("calendarHours", JSON.stringify(calendarHours))
+}
+
+//Creates rows, hours, and retrieves any saved tasks
 function displayHours() {
   //Generates all necessary HTML
   for (let hour in calendarHours) {
@@ -30,7 +52,7 @@ function displayHours() {
     row.append(timeBox.append(timeStamp));
   
     let mainBox = $("<div class='col-8 col-sm-9 col-md-9 main-row'>");
-    let input = $("<textarea class='input' placeholder='Input task here'>");
+    let input = $("<textarea class='input' placeholder='Input task here'>" + calendarHours[hour] + "</textarea>");
   
     row.append(mainBox.append(input));
   
@@ -45,22 +67,20 @@ function displayHours() {
   }
 
   saveFunction()
-  //let momentHour = moment().format("H");
-  //color(momentHour);
 }
 
+//Adds click to save div and image. Takes user text and corresponding time
 function saveFunction() {
   ($(".save-box").get().forEach(element => {
     $(element).on("click", function() {
+      //If user clicks specifically on the save icon
       if (element.classList.contains("save-icon")) {
         let userText = element.parentElement.parentElement.querySelector("textarea").value;
-        console.log(userText);
 
         let time = element.parentElement.parentElement.querySelector("p").innerHTML;
-        console.log(time);
         
-        return userText, time;
-
+        return saveData(userText, time);
+      // If user clicks anywhere in the div
       } else {
         let userText = element.parentElement.querySelector("textarea").value;
         console.log(userText);
@@ -68,43 +88,15 @@ function saveFunction() {
         let time = element.parentElement.querySelector("p").innerHTML;
         console.log(time);
 
-        return userText, time;
+        return saveData(userText, time);
       }
-      
     })
   }))
 }
 
 displayHours()
 
-function retrieveHours() {
-  if (localStorage.length === 0) {
-    return
-  } else {
-    calendarHours = JSON.parse(localStorage.getItem("calendarHours"));
-  }
-}
-
-retrieveHours();
-
-
 //Function that determines color of time blocks
 function color() {
 
 }
-
-function saveData(time, userText) {
-  for (let hour in calendarHours) {
-    if (hour === time) {
-      calendarHours[time] = userText;
-    }
-  }
-  localStorage.setItem("calendarHours", JSON.stringify(calendarHours))
-}
-
-//TO-DO: Create a conditional statement that makes all the times before the current hour
-//red, the current hour green, and the rest of the day white
-
-  //TO-DO: Write the value of inputValue into localStorage (should also delete and replace
-  //the previous value of itself if applicable)
-    //This will probably end up being placed in the conditional statement above ^
