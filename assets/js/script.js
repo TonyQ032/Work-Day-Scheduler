@@ -51,13 +51,13 @@ function displayHours() {
   
     row.append(timeBox.append(timeStamp));
   
-    let mainBox = $("<div class='col-8 col-sm-9 col-md-9 main-row'>");
+    let mainBox = $("<div class='col-8 col-sm-8 col-md-9 main-row'>");
     let input = $("<textarea class='input' placeholder='Input task here'>" + calendarHours[hour] + "</textarea>");
   
     row.append(mainBox.append(input));
   
   
-    let saveBox = $("<div class='col-2 col-sm-1 col-md-1 save-box'>");
+    let saveBox = $("<div class='col-2 col-sm-2 col-md-1 save-box'>");
     let saveImg = $("<img class='save-icon' src='./assets/images/save-icon.png'>");
   
     row.append(saveBox.append(saveImg));
@@ -132,13 +132,14 @@ function saveFunction() {
 
 displayHours()
 
-//NEXT STEPS
+//Reset button that clears all the text on page and from localStorage
+const clearButton = $("<button id='clear-button'>Clear calendar</button>");
+const clearDiv = $("<div id='clear-container'>");
 
-//1 ------------------------
-//IMPLEMENT COLORS FOR PAST, PRESENT, AND FUTURE
+container.append(clearDiv);
+clearDiv.append(clearButton);
 
-//2
-//ADD RESET/CLEAR BUTTON
-
-//3
-//MAKE PAGE LOOK NICER
+clearButton.on("click", function() {
+  localStorage.clear()
+  $("textarea").text("");
+});
