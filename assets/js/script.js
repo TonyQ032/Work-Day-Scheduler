@@ -17,29 +17,6 @@ let calendarHours = {
   "5:00 PM": "",
 }
 
-//Retrieves any previously written tasks from localStorage and reassigns them 
-//to the object "calendarHours"
-function retrieveHours() {
-  if (localStorage.length === 0) {
-    return
-  } else {
-    let pulledHours = JSON.parse(localStorage.getItem("calendarHours"));
-    calendarHours = pulledHours
-  }
-}
-
-retrieveHours();
-
-//Takes user's text along with the corresponding hour block and saves it into localStorage
-function saveData(userText, time) {
-  for (let hour in calendarHours) {
-    if (hour === time) {
-      calendarHours[time] = userText;
-    }
-  }
-  localStorage.setItem("calendarHours", JSON.stringify(calendarHours))
-}
-
 //Creates rows, hours, and retrieves any saved tasks
 function displayHours() {
   //Generates all necessary HTML
@@ -136,6 +113,29 @@ function saveFunction() {
 
 displayHours()
 
+//Retrieves any previously written tasks from localStorage and reassigns them 
+//to the object "calendarHours"
+function retrieveHours() {
+  if (localStorage.length === 0) {
+    return
+  } else {
+    let pulledHours = JSON.parse(localStorage.getItem("calendarHours"));
+    calendarHours = pulledHours
+  }
+}
+
+retrieveHours();
+
+//Takes user's text along with the corresponding hour block and saves it into localStorage
+function saveData(userText, time) {
+  for (let hour in calendarHours) {
+    if (hour === time) {
+      calendarHours[time] = userText;
+    }
+  }
+  localStorage.setItem("calendarHours", JSON.stringify(calendarHours))
+}
+
 //Reset button that clears all the text on page and from localStorage
 const clearButton = $("<button id='clear-button'>Clear calendar</button>");
 const clearDiv = $("<div id='clear-container'>");
@@ -143,7 +143,9 @@ const clearDiv = $("<div id='clear-container'>");
 container.append(clearDiv);
 clearDiv.append(clearButton);
 
-clearButton.on("click", function() {
-  localStorage.clear()
+clearButton.on("click", resetEverything)
+
+function resetEverything() {
+  localStorage.clear();
   $("textarea").text("");
-});
+}
