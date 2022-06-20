@@ -19,6 +19,7 @@ let calendarHours = {
 
 //Creates rows, hours, and retrieves any saved tasks
 function displayHours() {
+  retrieveHours()
   //Generates all necessary HTML
   for (let hour in calendarHours) {
     let row = $("<div class='row'>")
@@ -124,7 +125,6 @@ function retrieveHours() {
   }
 }
 
-retrieveHours();
 
 //Takes user's text along with the corresponding hour block and saves it into localStorage
 function saveData(userText, time) {
