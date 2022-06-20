@@ -63,7 +63,43 @@ function displayHours() {
     row.append(saveBox.append(saveImg));
   
     container.append(row);
+  }
+  
+  //Next section assigns each row a value that corresponds with their time
+  //This will be used to color code depending on hour
+  const containerLength = document.querySelector(".container").children.length;
+  console.log(containerLength);
 
+  let currentHour = moment().format("H");
+  console.log("It is currently " + currentHour);
+
+  let mRow = $(".main-row");
+  let tBox = $(".time-box");
+  let times = [9, 10, 11, 12, 13, 14, 15, 16, 17];
+
+  //Gives each row and time box a time value
+  for (i = 0; i < containerLength; i++) {
+    $(tBox[i]).attr("data-hour", times[i]);
+  }
+
+  //Assigns each block a color depending on the time
+  for (i = 0; i < times.length; i++) {
+    let tBoxData = $(tBox[i]).attr("data-hour");
+    if (tBoxData == currentHour) {
+      console.log("present time")
+      $(tBox[i]).css("background-color", "#ff6961");
+      $(mRow[i]).css("background-color", "#ff6961");
+
+    } else if (tBoxData > currentHour) {
+      console.log("This is the future");
+      $(tBox[i]).css("background-color", "#77dd77");
+      $(mRow[i]).css("background-color", "#77dd77");
+
+    } else {
+      console.log("this is the past")
+      $(tBox[i]).css("background-color", "#d3d3d3");
+      $(mRow[i]).css("background-color", "#d3d3d3");
+    }
   }
 
   saveFunction()
@@ -96,7 +132,13 @@ function saveFunction() {
 
 displayHours()
 
-//Function that determines color of time blocks
-function color() {
+//NEXT STEPS
 
-}
+//1 ------------------------
+//IMPLEMENT COLORS FOR PAST, PRESENT, AND FUTURE
+
+//2
+//ADD RESET/CLEAR BUTTON
+
+//3
+//MAKE PAGE LOOK NICER
