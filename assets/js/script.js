@@ -70,7 +70,7 @@ function displayHours() {
   const containerLength = document.querySelector(".container").children.length;
   console.log(containerLength);
 
-  let currentHour = moment().format("H");
+  let currentHour = parseInt(moment().format("H"));
   console.log("It is currently " + currentHour);
 
   let mRow = $(".main-row");
@@ -85,7 +85,7 @@ function displayHours() {
   //Assigns each block a color depending on the time
   for (i = 0; i < times.length; i++) {
     let tBoxData = $(tBox[i]).attr("data-hour");
-    if (tBoxData == currentHour) {
+    if (tBoxData === currentHour) {
       console.log("present time")
       $(tBox[i]).css("background-color", "#ff6961");
       $(mRow[i]).css("background-color", "#ff6961");
