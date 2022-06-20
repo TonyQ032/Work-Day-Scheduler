@@ -48,7 +48,7 @@ function displayHours() {
   const containerLength = document.querySelector(".container").children.length;
   console.log(containerLength);
 
-  let currentHour = 11;
+  let currentHour = parseInt(moment().format("H"));
   console.log("It is currently " + currentHour);
   console.log(typeof currentHour);
   console.log(currentHour);
